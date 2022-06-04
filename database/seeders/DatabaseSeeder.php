@@ -20,9 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'slug' => 'test@example.com',
         // ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'isAdmin'=>true,
+            'email' => 'test@example.com',
+        ]);
     }
 }
