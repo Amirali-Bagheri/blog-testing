@@ -53,8 +53,10 @@
                                             </ul>
                                         </div>
                                     @endif
-
-                                    <button type="submit" class="btn btn-success btn-lg">
+                                    <a href="{{route('dashboard.posts.destroy',$post->id)}}" class="btn btn-danger btn-lg p-2">
+                                        حذف
+                                    </a>
+                                    <button type="submit" class="btn btn-success btn-lg p-2">
                                         ذخیره
                                     </button>
                                 </form>

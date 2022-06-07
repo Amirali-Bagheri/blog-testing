@@ -10,8 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest();
-        $users = User::latest();
-        return view('dashboard.dashboard',compact('users','posts'));
+        $posts = \App\Models\Post::where('user_id',auth()->id())->get();
+        return view('dashboard.dashboard',compact('posts'));
     }
 }

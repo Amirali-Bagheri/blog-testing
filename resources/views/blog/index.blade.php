@@ -10,6 +10,9 @@
                             {{$post->title}}
                         </a>
                     </div>
+                    <div style="margin-right: auto; color: #fff; font-size: 12px;">
+                        توسط: {{$post->user->name}}
+                    </div>
                 </div>
 
                 <div class="ml-12">
@@ -20,5 +23,4 @@
             </div>
         @endforeach
     </div>
-    {{ $posts->links('vendor.pagination.bootstrap-5') }}
 @endsection

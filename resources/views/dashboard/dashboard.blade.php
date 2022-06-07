@@ -8,31 +8,24 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="card shadow-sm sm:rounded-lg">
-                            <div class="card-header">
-                                <h5>Users</h5>
-                            </div>
-                            <div class="card-body sm:text-right">
-                                <ul class="list-group list-group-flush">
-                                    @foreach(\App\Models\User::latest()->get() as $user)
-                                        <li class="list-group-item">
-                                            {{$user->name}}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6 col-sm-12">
+                @if (session()->has('success'))
+                    <div class="alert alert-success" style="direction: rtl;">
+                      <span>{{ session()->get('success') }}</span>
+                    </div>
+                @endif
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
                         <div class="card shadow-sm sm:rounded-lg">
-                            <div class="card-header">
+                            <div class="card-header"  style="direction: rtl; display: flex;">
                                 <h5>پست ها</h5>
+                                <a style="margin-right: auto;" href="{{route('dashboard.posts.create')}}">
+                                    پست  جدید
+                                </a>
                             </div>
                             <div class="card-body sm:text-right" style="direction: rtl">
-                                @foreach(\App\Models\Post::latest()->get() as $post)
+                                @foreach($posts as $post)
                                     <li class="list-group-item">
                                         {{$post->title}}
                                         <a href="{{route('dashboard.posts.edit',$post->id) }}">

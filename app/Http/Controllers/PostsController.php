@@ -67,9 +67,10 @@ class PostsController extends Controller
         return redirect()->route('dashboard')->with("success", "عملیات با موفقیت انجام شد");
     }
 
-    public function destroy(Post $post_id)
+    public function destroy(Request $request)
     {
-        $post = Post::findOrFail($post_id);
+        $id = $request->id;
+        $post = Post::findOrFail($id);
         $post->delete();
 
         return redirect()->route('dashboard')->with("success", "عملیات با موفقیت انجام شد");

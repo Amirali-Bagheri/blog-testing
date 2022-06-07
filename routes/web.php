@@ -27,7 +27,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function(){
     Route::post('/posts/store', [PostsController::class, 'store'])->name('dashboard.posts.store');
     Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('dashboard.posts.edit');
     Route::post('/posts/update/{id}', [PostsController::class, 'update'])->name('dashboard.posts.update');
-    Route::delete('/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('dashboard.posts.destroy');
+    Route::get('/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('dashboard.posts.destroy');
 });
 
 require __DIR__ . '/auth.php';
