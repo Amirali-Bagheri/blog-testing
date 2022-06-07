@@ -7,38 +7,47 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-	public function index()
-	{
-		//
-	}
+    public function index()
+    {
+        $categories = Category::all();
 
-	public function create()
-	{
-		//
-	}
+        return view('categories.index', compact('categories'));
+    }
 
-	public function store(Request $request)
-	{
-		//
-	}
+    public function create()
+    {
+        return view('categories.create');
+    }
 
-	public function show(Category $category)
-	{
-		//
-	}
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|unique:categories',
+            'slug'  => 'required|unique:categories',
+        ]);
 
-	public function edit(Category $category)
-	{
-		//
-	}
+        return redirect()->route('categories.index')->with('success', 'Category Created successfully');
+    }
 
-	public function update(Request $request, Category $category)
-	{
-		//
-	}
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
 
-	public function destroy(Category $category)
-	{
-		//
-	}
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'title' => 'required|unique:categories',
+            'slug'  => 'required|unique:categories',
+        ]);
+
+        return redirect()->route('categories.index')->with('success', 'Category Updated successfully');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
+    }
 }
