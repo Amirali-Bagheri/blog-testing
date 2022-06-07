@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('content')->nullable();
-            $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('user_id')->constrained('users');
 			$table->timestamps();
 		});
