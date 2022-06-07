@@ -14,7 +14,7 @@
                             <div class="card-header">
                                 <h5>Users</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body sm:text-right">
                                 <ul class="list-group list-group-flush">
                                     @foreach(\App\Models\User::latest()->get() as $user)
                                         <li class="list-group-item">
@@ -29,12 +29,15 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="card shadow-sm sm:rounded-lg">
                             <div class="card-header">
-                                <h5>Posts</h5>
+                                <h5>پست ها</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body sm:text-right" style="direction: rtl">
                                 @foreach(\App\Models\Post::latest()->get() as $post)
                                     <li class="list-group-item">
                                         {{$post->title}}
+                                        <a href="{{route('dashboard.posts.edit',$post->id) }}">
+                                            <span style="float: left; font-size: 12px;">ویرایش</span>
+                                        </a>
                                     </li>
                                 @endforeach
                             </div>

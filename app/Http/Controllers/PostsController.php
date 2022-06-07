@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         return view('dashboard.posts.create');
@@ -20,18 +15,18 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "tilte" => 'required',
+            "title"   => 'required',
             "content" => 'required',
-            "slug" => 'unique:posts,slug',
+            "slug"    => 'unique:posts,slug',
         ]);
 
         $user_id = auth()->id();
 
         Post::create([
-            "title" => $request->title,
-            "content" => $request->content,
-            "slug" => $request->slug,
-            "user_id" => $user_id
+            "title"   => $request->get('title'),
+            "content" => $request->get('content'),
+            "slug"    => $request->get('slug'),
+            "user_id" => $user_id,
         ]);
 
         return redirect()->route('dashboard')->with("success", "عملیات با موفقیت انجام شد");
@@ -41,32 +36,32 @@ class PostsController extends Controller
     {
         $slug = $request->slug;
         $post = Post::where("slug", $slug)->firstOrFail();
+
         return view("blog.single", ["post" => $post]);
     }
 
     public function edit(Request $request)
     {
-        $slug = $request->slug;
-        $post = Post::where("slug", $slug)->firstOrFail();
-        return view("dashboard.posts.create", ["post" => $post]);
+        $id = $request->id;
+        $post = Post::where("id", $id)->firstOrFail();
+
+        return view("dashboard.posts.edit", ["post" => $post]);
     }
 
-    public function update(Request $request, Post $post_id)
+    public function update(Request $request, $id)
     {
-        $post = Post::findOrFail($post_id);
+        $post = Post::findOrFail($id);
 
         $request->validate([
-            "tilte" => 'required',
+            "title"   => 'required',
             "content" => 'required',
-            "slug" => 'unique:posts,slug',
+            "slug"    => 'unique:posts,slug',
         ]);
 
-        $user_id = auth()->id();
-
         $post->update([
-            "title" => $request->title,
-            "content" => $request->content,
-            "slug" => $request->slug,
+            "title"   => $request->get('title'),
+            "content" => $request->get('content'),
+            "slug"    => $request->get('slug'),
         ]);
 
         return redirect()->route('dashboard')->with("success", "عملیات با موفقیت انجام شد");
@@ -76,5 +71,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($post_id);
         $post->delete();
+
+        return redirect()->route('dashboard')->with("success", "عملیات با موفقیت انجام شد");
     }
 }
