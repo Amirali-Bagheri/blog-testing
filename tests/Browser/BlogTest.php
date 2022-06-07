@@ -6,7 +6,7 @@ namespace Tests\Browser;
 class BlogTest extends \Tests\DuskTestCase
 {
     /**
-     * A basic test example.
+     * A blog index route test.
      *
      * @return void
      */
@@ -14,6 +14,20 @@ class BlogTest extends \Tests\DuskTestCase
     {
         $this->browse(function ($browser) {
             $browser->visit('/')->assertSee('بلاگ');
+        });
+    }
+
+    /**
+     * A blog sinlge post route test.
+     *
+     * @return void
+     */
+    public function test_blog_post_single_can_be_rendered()
+    {
+        $this->browse(function ($browser) {
+            $browser->visit('/')
+                    ->click('.max-w-6xl div.container > div > div:nth-child(1) a')
+                ->assertPathBeginsWith('/post');
         });
     }
 }
