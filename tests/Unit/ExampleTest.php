@@ -13,6 +13,13 @@ class ExampleTest extends TestCase
      */
     public function test_that_true_is_true()
     {
-        $this->assertTrue(true);
+        $number = 10;
+        if ($number > 0) {
+            $bool= true;
+        }else{
+            $bool= false;
+        }
+
+        $this->assertTrue($bool);
     }
 }
