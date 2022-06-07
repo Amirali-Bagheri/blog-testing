@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[\App\Http\Controllers\SiteController::class,'index'])->name('blog.index');
-Route::get('/post/{slug}',[\App\Http\Controllers\PostsController::class,'show'])->name('blog.single');
+Route::get('/', [SiteController::class, 'index'])->name('blog.index');
+Route::get('/post/{slug}', [PostsController::class, 'show'])->name('blog.single');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
