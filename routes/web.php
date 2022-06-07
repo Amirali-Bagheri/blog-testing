@@ -25,9 +25,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function(){
 
     Route::get('/posts/create', [PostsController::class, 'create'])->name('dashboard.posts.create');
     Route::post('/posts/store', [PostsController::class, 'store'])->name('dashboard.posts.store');
-    Route::get('/posts/edit', [PostsController::class, 'edit'])->name('dashboard.posts.edit');
-    Route::post('/posts/update', [PostsController::class, 'update'])->name('dashboard.posts.update');
-    Route::delete('/posts/destroy', [PostsController::class, 'destroy'])->name('dashboard.posts.destroy');
+    Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('dashboard.posts.edit');
+    Route::post('/posts/update/{id}', [PostsController::class, 'update'])->name('dashboard.posts.update');
+    Route::delete('/posts/destroy/{id}', [PostsController::class, 'destroy'])->name('dashboard.posts.destroy');
 });
 
 require __DIR__ . '/auth.php';
