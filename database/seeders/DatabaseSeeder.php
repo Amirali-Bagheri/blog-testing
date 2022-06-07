@@ -14,18 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'test@example.com',
-            'password'=> bcrypt('test')
+        $this->call([
+            UserSeeder::class,
+            PostSeeder::class,
         ]);
-
-        \App\Models\User::factory(10)->create();
-        // \App\Models\Category::factory(10)->create([
-        //     'name' => ,
-        //     'slug' => 'test@example.com',
-        // ]);
-
 
     }
 }

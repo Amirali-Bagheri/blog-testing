@@ -8,6 +8,7 @@ class PostSeeder extends Seeder
 {
 	public function run()
 	{
-		//
+
+        \App\Models\Post::factory(20)->create();
 	}
 }
