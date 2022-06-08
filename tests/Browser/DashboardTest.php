@@ -3,10 +3,13 @@
 namespace Tests\Browser;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\DuskTestCase;
 
 class DashboardTest extends DuskTestCase
 {
+    // use RefreshDatabase;
+
     /**
      * Check Dashboard login with user.
      *

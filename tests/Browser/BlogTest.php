@@ -3,8 +3,12 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 class BlogTest extends \Tests\DuskTestCase
 {
+    // use RefreshDatabase;
+
     /**
      * A blog index route test.
      *
@@ -18,7 +22,7 @@ class BlogTest extends \Tests\DuskTestCase
     }
 
     /**
-     * A blog sinlge post route test.
+     * A blog single post route test.
      *
      * @return void
      */
